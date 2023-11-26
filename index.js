@@ -93,7 +93,6 @@ app.post("/submit", async (req, res) => {
         emailId: email,
       },
     });
-    console.log('OtpRequestedEmail.OTP', OtpRequestedEmail.OTP)
     if (UserEmailExists && OtpRequestedEmail.OTP === otp) {
       await Otp.destroy({
         where: {
@@ -133,68 +132,7 @@ app.post("/submit", async (req, res) => {
     }
   });
 
-  // jwt.verify(jwtToken, "secretKey", async (err, authData) => {
-  //   if (err) {
-  //     res.status(403).send({
-  //       message: "Authentication failed!",
-  //     });
-  //   } else if (email) {
-  //     let UserEmail = await Users.findOne({
-  //       where: {
-  //         email: email,
-  //       },
-  //     });
-  //     if (UserEmail) {
-  //       if (otp === sendOtp(email)) {
-  //         let USER_ID = await Users.findOne({
-  //           where: {
-  //             USER_ID: email,
-  //           },
-  //         });
-  //         await Events.create({
-  //           USER_ID: USER_ID,
-  //           date: new Date().getTime(),
-  //         });
-  //       }
-  //       // res.status(400).send({
-  //       //   message:
-  //       //     "user already Exists. Please check registered email for further login process.",
-  //       // });
-  //     } else {
-  //       await Temp.create({
-  //         primaryName: name,
-  //         email: email,
-  //         number: number,
-  //         city: city,
-  //         state: state,
-  //         schoolName: schoolName,
-  //       });
-  //       if (otp === sendOtp(email)) {
-  //         await Users.create({
-  //           USER_ID: email,
-  //           primaryName: name,
-  //           email: email,
-  //           number: number,
-  //           city: city,
-  //           state: state,
-  //           schoolName: schoolName,
-  //         });
-  //         await Events.create({
-  //           USER_ID: USER_ID,
-  //           date: new Date().getTime(),
-  //         });
-  //       }
-  //       res.status(200).send({
-  //         message: "User created Successfully!",
-  //         authData,
-  //       });
-  //     }
-  //   } else {
-  //     res.status(500).send({
-  //       message: "Something went Wrong!",
-  //     });
-  //   }
-  // });
+
 });
 
 db.sequelize.sync().then((req) => {
