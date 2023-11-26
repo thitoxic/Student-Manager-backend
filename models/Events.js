@@ -1,12 +1,15 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../db");
+module.exports = (sequelize, DataTypes) => {
+  const Events = sequelize.define("Event", {
+    emailId: {
+      type:DataTypes.STRING,
+      allowNull: false,
+    },
+    loggedIn: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false            
+    }
 
-export const Events = sequelize.define("Events", {
-  USER_ID: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  createdDate: {
-    type: DataTypes.DATE,
-  },
-});
+  });
+  return Events;
+}
+
